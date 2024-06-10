@@ -1,0 +1,30 @@
+replicaCount: 1
+
+image:
+  repository: selimzakhama
+  tag: "golang"
+  pullPolicy: IfNotPresent
+
+service:
+  name: golang
+  type: ClusterIP
+  port: 8010
+  protocol: TCP
+
+volume:
+  name: gp2
+  path: /tmp/data
+  
+ingress:
+  name: golang
+  path: /tmp/data  
+  host: selimzakhama-math.horizon-workspaces.com
+  
+pvc:
+  name: gp2
+  accessMode: ReadWriteOnce
+  storage: 1Gi
+  
+  
+env:
+  name: dev
